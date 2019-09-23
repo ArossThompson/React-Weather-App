@@ -10,8 +10,9 @@ class Search extends React.Component {
 
     render () {
         return(
-            <div class="search-field">
+            <div className="search-field">
                 <input type="text" className="search-field__search"></input>
+                <i className="fa fa-search"></i>
             </div>
         )
     }
