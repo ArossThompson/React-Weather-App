@@ -1,3 +1,11 @@
 .title {
     text-align: center;
+
+    .appHeading {
+        font-size: 28px;
+
+        @media screen and (max-width: 700px) {
+            font-size: 20px;
+        }
+    }
 }

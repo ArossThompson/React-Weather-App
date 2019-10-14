@@ -1,19 +1,23 @@
 .search-field {
-    width: 50%;
-    margin: 25px auto;
+    width: 100%;
+    margin: 15px auto;
     text-align: center;
 
     .search-field__search {
-        width: 100%;
+        width: 50%;
         max-width: 680px;
         height: 25px;
-        font-size: 20px;
-        color: grey;
+        font-size: 16px;
         margin: 0 auto;
         padding: 5px 5px 5px 15px;
         border: 2px solid lightgrey;
         border-radius: 10px;
         outline: none;
+
+        @media screen and (max-width: 700px) {
+            height: 18px;
+            font-size: 12px;
+        }
     }
 
     .search-field__search:focus {
@@ -25,10 +29,12 @@
     text-align: left;
     color: grey;
     padding-left:18px;
-    font-size: 14px;
+    font-size: 10px;
 
     .helpTextHeading {
         text-decoration: underline;
+        margin-bottom: 0;
+        padding: 0;
     }
 
     .helpText {
