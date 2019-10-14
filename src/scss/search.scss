@@ -10,16 +10,10 @@
         font-size: 20px;
         color: grey;
         margin: 0 auto;
-        padding: 5px 5px 5px 35px;
+        padding: 5px 5px 5px 15px;
         border: 2px solid lightgrey;
         border-radius: 10px;
         outline: none;
-    }
-
-    .fa-search {
-        position: absolute;
-        top: 37px;
-        left: 27%;
     }
 
     .search-field__search:focus {
@@ -35,6 +29,10 @@
 
     .helpTextHeading {
         text-decoration: underline;
+    }
+
+    .helpText {
+        padding-left: 5px;
     }
 }
 

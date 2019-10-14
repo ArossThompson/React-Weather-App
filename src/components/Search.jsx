@@ -23,7 +23,6 @@ class Search extends React.Component {
                         className="search-field__search"
                         value={this.state.term}
                         onChange={e => {this.setState({ term: e.target.value })}}></input>
-                    <i className="fa fa-search"></i>
                     <div className="help">
                         <p className="helpTextHeading">Example searches:</p>
                         <p className="helpText">"Manchester GB" - Includes country code.</p>

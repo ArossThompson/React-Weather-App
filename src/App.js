@@ -28,7 +28,10 @@ class App extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <h1>Title</h1>
+        <div className="title">
+          <h1 className="appHeading">React Weather App</h1>
+        </div>
+        
         <div className="App">
           <Search
             onSubmit={this.onSearchSubmit}
