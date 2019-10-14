@@ -6,12 +6,39 @@ import './App.scss'
 // Components
 import Search from './components/Search'
 
-function App() {
-  return (
-    <div className="App">
-      <Search />
-    </div>
-  );
+// API
+import { weatherbit } from './api/weatherbit'
+
+class App extends React.Component {
+  state = {
+    API_key: "2a8408dcee7d40bd990287cd34ef4740",
+    weather: {}
+  }
+
+  onSearchSubmit = async (term) =>  {
+    let response;
+    if(term.split(" ").length > 1) {
+      response = await weatherbit.get(`?city=${term.split(" ")[0]}&country=${term.split(" ")[1]}&key=${this.state.API_key}`)
+    } else {
+      response = await weatherbit.get(`?city=${term}&key=${this.state.API_key}`)
+    }
+    console.log(response);
+  }
+
+  render () {
+    return (
+      <React.Fragment>
+        <h1>Title</h1>
+        <div className="App">
+          <Search
+            onSubmit={this.onSearchSubmit}
+          />
+        </div>
+      </React.Fragment>
+      
+    );
+  }
+  
 }
 
 export default App;
