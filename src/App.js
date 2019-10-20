@@ -14,26 +14,18 @@ class App extends React.Component {
   state = {
     API_key: "99ad8eeaf011aaa5fe877e2e52ff371e",
     base_data: [],
-    weather: []
+    weather: [],
+    resStatus: null
   }
 
   onSearchSubmit = async (term) =>  {
-    let response;
-
     if(term.split(" ").length > 1) {
-      response = await owm.get(`?q=${term.split(" ")[0]},${term.split(" ")[1]}&APPID=${this.state.API_key}`)
+      await owm.get(`?q=${term.split(" ")[0]},${term.split(" ")[1]}&APPID=${this.state.API_key}`).then(res => this.setState({weather:res.data, base_data:res}))
+      .catch(err => err ? this.setState({resStatus:"unsuccessful"}) : null)
     } else {
-      response = await owm.get(`?q=${term}&APPID=${this.state.API_key}`);
+      await owm.get(`?q=${term}&APPID=${this.state.API_key}`).then(res => this.setState({weather:res.data, base_data:res}))
+      .catch(err => err ? this.setState({resStatus:"unsuccessful"}) : null)
     }
-
-    console.log(response);
-
-    this.setState({ 
-                    base_data: response,
-                    weather: response.data
-                  })
-    
-    console.log(this.state.weather);
   }
 
   render () {
@@ -49,6 +41,7 @@ class App extends React.Component {
         <WeatherListing 
           weather={this.state.weather}
           base={this.state.base_data}
+          res={this.state.resStatus}
         />
       </div>    
     );
