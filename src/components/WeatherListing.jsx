@@ -9,7 +9,7 @@ class WeatherListing extends React.Component {
 
     render() {
         
-        if(this.props.base.statusText === 'OK') {
+        if(this.props.base.statusText === 'OK' && this.props.res !== "unsuccessful") {
             const weather = this.props.weather;
             return (
                 <div className="weather-listing">
@@ -19,13 +19,13 @@ class WeatherListing extends React.Component {
                         <p className="weather-desc weather-field">Description: {weather.weather[0].description}</p>
                         <img className="weather-icon weather-field" src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt=""/>
                         <p className="weather-temp weather-field">Temperature: {weather.main.temp}°</p>
-                        <p className="weather-precip weather-field">Pressure: {weather.main.pressure}</p>
-                        <p className="weather-precip weather-field">Humidity: {weather.main.humidity}</p>
-                        <p className="weather-wind weather-field">Wind speed(kmh): {weather.wind.speed}</p>
+                        <p className="weather-precip weather-field">Humidity: {weather.main.humidity}%</p>
+                        <p className="weather-wind weather-field">Wind speed: {weather.wind.speed} km/h</p>
+                        <p className="weather-precip weather-field">Air pressure: {weather.main.pressure} mb</p>
                     </div>  
                 </div>
             )
-        } else if (this.props.res == "unsuccessful") {
+        } else if (this.props.res === "unsuccessful") {
             return (
                 <div className="weather-listing">
                     <h1>Your search did not find any results.</h1>

@@ -20,13 +20,17 @@ class App extends React.Component {
 
   onSearchSubmit = async (term) =>  {
     if(term.split(" ").length > 1) {
-      await owm.get(`?q=${term.split(" ")[0]},${term.split(" ")[1]}&APPID=${this.state.API_key}`).then(res => this.setState({weather:res.data, base_data:res}))
-      .catch(err => err ? this.setState({resStatus:"unsuccessful"}) : null)
+      await owm.get(`?q=${term.split(" ")[0]},${term.split(" ")[1]}&units=metric&APPID=${this.state.API_key}`).then(res => this.setState({weather:res.data, base_data:res, resStatus: ''}))
+      .catch(err => err ? this.setState({resStatus:"unsuccessful", base: ''}) : null)
     } else {
-      await owm.get(`?q=${term}&APPID=${this.state.API_key}`).then(res => this.setState({weather:res.data, base_data:res}))
-      .catch(err => err ? this.setState({resStatus:"unsuccessful"}) : null)
+      await owm.get(`?q=${term}&units=metric&APPID=${this.state.API_key}`).then(res => this.setState({weather:res.data, base_data:res, resStatus: ''}))
+      .catch(err => err ? this.setState({resStatus:"unsuccessful", base: ''}) : null)
     }
+
+    console.log(this.state.weather);
   }
+
+ 
 
   render () {
     return (
