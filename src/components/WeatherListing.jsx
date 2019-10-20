@@ -13,13 +13,13 @@ class WeatherListing extends React.Component {
                 const weather = this.props.weather[0];
                 return (
                     <div className="weather-listing">  
-                        <p>Location: {weather.city_name} {weather.country_code}</p>
-                        <p>Date and Time: {weather.datetime.split(":")[0]}</p>
-                        <p>{weather.weather.description}</p>
-                        <span className="weather-image">{weather.weather.icon}</span>
-                        <p>Temperature: {weather.temp}</p>
-                        <p>Precipitation: {weather.precip}</p>
-                        <p>Wind: {weather.wind_spd}</p>
+                        <p className="weather-location weather-field">Location: {weather.city_name} {weather.country_code}</p>
+                        <p className="weather-date weather-field">Date: {weather.datetime.split(":")[0]}</p>
+                        <p className="weather-desc weather-field">Description: {weather.weather.description}</p>
+                        <img className="weather-icon weather-field" src={require(`../icons/${weather.weather.icon}.png`)} alt=""/>
+                        <p className="weather-temp weather-field">Temperature: {weather.temp}°</p>
+                        <p className="weather-precip weather-field">Precipitation: {weather.precip}</p>
+                        <p className="weather-wind weather-field">Wind speed(kmh): {weather.wind_spd}</p>
                     </div>
                 )
             } else if (this.props.base_data && this.props.base_data.statusText === 'No Content') {
@@ -32,8 +32,6 @@ class WeatherListing extends React.Component {
             } else {
                 return null;
             }
-        } else {
-            return null;
         }
     }      
 }

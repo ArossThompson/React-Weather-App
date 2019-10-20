@@ -23,7 +23,7 @@ class Search extends React.Component {
                         className="search-field__search"
                         value={this.state.term}
                         onChange={e => {this.setState({ term: e.target.value })}}
-                        placeholder="Search here..."
+                        placeholder="Search a city name...."
                     ></input>
                     <div className="help">
                         <p className="helpTextHeading">Example searches:</p>

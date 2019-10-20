@@ -1,8 +1,19 @@
 .weather-listing {
     margin: 0 auto;
     width: 85%;
+    max-width: 950px;
     height: 500px;
     background: #f5f6f7;
     border-radius: 15px;
     text-align: center;
+    
+    .weather-field {
+        margin-bottom: 30px;
+        font-size: 18px;
+    }
+
+    .weather-location {
+        font-size: 24px;
+        font-weight: 800;
+    }
 }
