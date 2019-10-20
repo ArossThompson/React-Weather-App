@@ -5,14 +5,14 @@ import './App.scss'
 
 // Components
 import Search from './components/Search'
-import WeatherListing from './components/WeatherListing'
 
 // API
-import { weatherbit } from './api/weatherbit'
+import { owm } from './api/openWeatherMap'
+import WeatherListing from './components/WeatherListing';
 
 class App extends React.Component {
   state = {
-    API_key: "2a8408dcee7d40bd990287cd34ef4740",
+    API_key: "99ad8eeaf011aaa5fe877e2e52ff371e",
     base_data: [],
     weather: []
   }
@@ -21,14 +21,16 @@ class App extends React.Component {
     let response;
 
     if(term.split(" ").length > 1) {
-      response = await weatherbit.get(`?city=${term.split(" ")[0]}&country=${term.split(" ")[1]}&key=${this.state.API_key}`);
+      response = await owm.get(`?q=${term.split(" ")[0]},${term.split(" ")[1]}&APPID=${this.state.API_key}`)
     } else {
-      response = await weatherbit.get(`?city=${term}&key=${this.state.API_key}`);
+      response = await owm.get(`?q=${term}&APPID=${this.state.API_key}`);
     }
+
+    console.log(response);
 
     this.setState({ 
                     base_data: response,
-                    weather: response.data.data 
+                    weather: response.data
                   })
     
     console.log(this.state.weather);
@@ -43,11 +45,11 @@ class App extends React.Component {
         <Search
           onSubmit={this.onSearchSubmit}
         />
-        <WeatherListing
-          base_data={this.state.base_data}
-          weather={this.state.weather}
-        />  
 
+        <WeatherListing 
+          weather={this.state.weather}
+          base={this.state.base_data}
+        />
       </div>    
     );
   }

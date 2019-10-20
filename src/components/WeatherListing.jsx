@@ -9,17 +9,20 @@ class WeatherListing extends React.Component {
 
     render() {
         if(this.props.weather !== '') {
-            if(this.props.base_data.statusText === 'OK') {
-                const weather = this.props.weather[0];
+            if(this.props.base.statusText === 'OK') {
+                const weather = this.props.weather;
                 return (
-                    <div className="weather-listing">  
-                        <p className="weather-location weather-field">Location: {weather.city_name} {weather.country_code}</p>
-                        <p className="weather-date weather-field">Date: {weather.datetime.split(":")[0]}</p>
-                        <p className="weather-desc weather-field">Description: {weather.weather.description}</p>
-                        <img className="weather-icon weather-field" src={require(`../icons/${weather.weather.icon}.png`)} alt=""/>
-                        <p className="weather-temp weather-field">Temperature: {weather.temp}°</p>
-                        <p className="weather-precip weather-field">Precipitation: {weather.precip}</p>
-                        <p className="weather-wind weather-field">Wind speed(kmh): {weather.wind_spd}</p>
+                    <div className="weather-listing">
+                        <div className="weather-items">
+                            <p className="weather-location weather-field">Location: {weather.name}</p>
+                            <p className="weather-cc weather-field">Country code: {weather.sys.country}</p>
+                            <p className="weather-desc weather-field">Description: {weather.weather[0].description}</p>
+                            <img className="weather-icon weather-field" src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt=""/>
+                            <p className="weather-temp weather-field">Temperature: {weather.main.temp}°</p>
+                            <p className="weather-precip weather-field">Pressure: {weather.main.pressure}</p>
+                            <p className="weather-precip weather-field">Humidity: {weather.main.humidity}</p>
+                            <p className="weather-wind weather-field">Wind speed(kmh): {weather.wind.speed}</p>
+                        </div>  
                     </div>
                 )
             } else if (this.props.base_data && this.props.base_data.statusText === 'No Content') {
